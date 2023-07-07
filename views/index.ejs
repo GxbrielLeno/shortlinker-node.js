@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    <%= title %> - Encurtador de Link
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <button id="dark-mode">
+        <input id='btn' type="checkbox">
+        <label for="btn" for="btn2" class="cont"></label>
+      </button>
+      <div class="imgs-logo">
+        <a href="/"><img src="/images/logo.png" id="logo"></a>
+        <a href="/"><img src="/images/logo-darkmode.png" id="logo-icon-dark"></a>
+      </div>
+
+    </div>
+    <div class="modelo">
+      <form method="POST" action="/new">
+        <div class="digite-url">
+          <input placeholder="Digite a URL a ser encurtada" name="url" id="link-input" class="form-control"
+            onchange="verificaInput()" />
+          <div>
+            <button type="submit" id="btn-encurtar" disabled>Encurtar</button>
+          </div>
+        </div>
+        <div class="alert" id="alert" style="display: none;">
+          A URL deve conter o protocolo HTTP.
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    // Dark Mode
+    const DarkLogo = document.getElementById('logo');
+    const WhiteLogo = document.getElementById('logo-icon-dark');
+    const checkbox = document.getElementById("btn");
+    let isDarkLogoVisible = true;
+    let isWhiteLogoVisible = true;
+    let theme = window.localStorage.getItem("theme");
+    // Verifica se o tema está definido no localStorage, caso contrário, define o tema "light" como padrão
+    if (!theme) {
+      theme = "light";
+      isWhiteLogoVisible = false;
+      window.localStorage.setItem("theme", theme);
+    } else {
+      // Verifica se os logotipos escuros e brancos estão visíveis no localStorage
+      isDarkLogoVisible = window.localStorage.getItem("darkLogoVisible") === "true";
+      isWhiteLogoVisible = window.localStorage.getItem("whiteLogoVisible") === "true";
+    }
+
+    // Aplica as classes "dark" ao body e marca o checkbox se o tema for "dark"
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+      checkbox.checked = true;
+      updateLogoVisibility();
+    } else {
+      updateLogoVisibility();
+    }
+
+    // Alterna entre os temas "dark" e "light" quando o checkbox é alterado
+    checkbox.addEventListener("change", () => {
+      document.body.classList.toggle("dark");
+
+      if (theme === "dark") {
+        theme = "light";
+        window.localStorage.setItem("theme", theme);
+        isDarkLogoVisible = true;
+        isWhiteLogoVisible = false;
+      } else {
+        theme = "dark";
+        window.localStorage.setItem("theme", theme);
+        isDarkLogoVisible = false;
+        isWhiteLogoVisible = true;
+      }
+
+      updateLogoVisibility();
+    });
+
+    // Atualiza a visibilidade dos logotipos e salva as configurações no localStorage
+    function updateLogoVisibility() {
+      DarkLogo.style.display = isDarkLogoVisible ? 'block' : 'none';
+      WhiteLogo.style.display = isWhiteLogoVisible ? 'block' : 'none';
+      window.localStorage.setItem("darkLogoVisible", isDarkLogoVisible.toString());
+      window.localStorage.setItem("whiteLogoVisible", isWhiteLogoVisible.toString());
+    }
+
+    // Atualiza a página ao clicar no botão de atualizar
+    const refresh = document.getElementById("refresh");
+    refresh.addEventListener("click", () => {
+      window.location.reload();
+    });
+
+    // Verifica se o campo de entrada contém "http" para habilitar ou desabilitar o botão de encurtar
+    function verificaInput() {
+      let alert = document.getElementById('alert');
+      let inputLink = document.getElementById('link-input').value;
+      var botao = document.getElementById("btn-encurtar");
+      if (!inputLink.includes('http')) {
+        botao.disabled = true;
+        alert.style.display = 'block';
+      } else {
+        botao.disabled = false;
+        alert.style.display = 'none';
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+
+  <footer>
+    <p>
+      &copy; 2023 ShortLinker Feito por <a href="https://gabrielleno.tech/" target="_blank">Gabriel Leno</a>
+    </p>
+  </footer>
+</body>
+
+</html>

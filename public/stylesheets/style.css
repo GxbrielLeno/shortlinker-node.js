@@ -1,0 +1,280 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+:root {
+  --background-color: #fff;
+  --text-color: #142136;
+}
+
+.dark {
+  --background-color: #121212;
+  --text-color: #fff;
+}
+
+body {
+  transition: background-color 0.5s;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.header {
+  text-align: center;
+}
+
+.icon {
+  height: 42px;
+}
+
+.content {
+  display: flex;
+  justify-content: center !important;
+}
+
+form {
+  flex: 0 0 80%;
+  padding: 2rem 2rem 1rem 2rem;
+  /* border: 1px solid #ccc; */
+  border-radius: .25rem;
+  text-align: center;
+}
+
+#logo {
+  width: 200px;
+}
+
+.digite-url {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.digite-url input {
+  background: transparent;
+  color: var(--text-color);
+}
+#btn-encurtar:focus {
+  outline: none;
+  border: 0px;
+}
+#btn-encurtar:hover {
+  scale: 1.05;
+}
+.digite-url input::placeholder {
+  color: var(--text-color);
+}
+
+#btn-encurtar {
+  transition: 250ms;
+  border: 0;
+  height: 6vh;
+  margin-left: -70px;
+  border-radius: 0 15px 15px 0;
+  background-color: #fa6868;
+}
+.imgs-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-control {
+  border: 1px solid rgb(250, 104, 104);
+  ;
+  height: 6vh;
+  width: 50% !important;
+  border-radius: 0 15px 15px 0;
+}
+
+a {
+  color: rgb(250, 104, 104);
+}
+
+a:hover {
+  color: rgb(255, 56, 56) !important;
+  scale: 50px !important;
+}
+
+.container {
+  height: 96vh !important;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert {
+  color: red;
+}
+
+.sua-url {
+  width: 35%;
+  padding: 10px 25px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.sua-url button {
+  background-color: transparent;
+  border: 0px;
+  margin: 0;
+  padding: 0;
+}
+
+#texto {
+  font-size: 18px;
+  color: #fa6868;
+  font-weight: 600;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.icones {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.icon-btn {
+  width: 75%;
+  padding: 0;
+  margin: 0;
+}
+
+.balao2 {
+  display: none;
+  background: #fa6868;
+  font-size: 0.85em;
+  line-height: 1.6em;
+  border-radius: 15px;
+  width: 36%;
+  height: auto;
+  color: #fff;
+  padding: 8px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 15px;
+  margin-top: -52px;
+  margin-left: 135px;
+}
+
+.balao2:after {
+  /*Triangulo*/
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #fa6868;
+  bottom: -15px;
+  left: 20%;
+}
+
+#novo-link {
+  background: linear-gradient(to right, #fa6868, #ee3131);
+  /* Adicione quaisquer outros estilos de botão que você desejar */
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+#dark-mode {
+  background-color: transparent;
+  border: 0;
+  z-index: 10;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}
+
+#dark-mode:focus {
+outline: none;
+}
+
+.cont {
+  height: 30px;
+  width: 60px;
+  background: #202430;
+  border-radius: 80px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  display: none;
+}
+
+#btn:checked~.cont {
+  background: whitesmoke;
+}
+
+.cont:before {
+  content: "";
+  margin: 0 10px;
+  height: 20px;
+  width: 20px;
+  background: whitesmoke;
+  border-radius: 80px;
+  transition: 0.5s;
+}
+
+#btn:checked~.cont:before {
+  transform: translateX(112%);
+  background: #202430;
+}
+#logo-icon-dark {
+  width: 200px;
+}
+@media (max-width: 700px) {
+
+  /* Estilos para dispositivos móveis */
+  form {
+    padding: 0;
+  }
+
+  .form-control {
+    width: 95% !important;
+  }
+
+  .container {
+    height: 93vh !important;
+  }
+
+  .sua-url {
+    width: 100%;
+    gap: 0;
+  }
+
+  .icon-btn {
+    width: 30px;
+    margin: 0 5px;
+  }
+
+  #texto {
+    font-size: 15px;
+  }
+
+  .balao2 {
+    margin-left: 100px;
+  }
+}

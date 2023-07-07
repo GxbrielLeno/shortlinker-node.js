@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        Encurtador
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button id="dark-mode">
+                <input id='btn' type="checkbox">
+                <label for="btn" for="btn2" class="cont"></label>
+              </button>
+              <div class="imgs-logo">
+                <a href="/"><img src="/images/logo.png" id="logo"></a>
+                <a href="/"><img src="/images/logo-darkmode.png" id="logo-icon-dark"></a>
+              </div>
+        </div>
+        <div class="stats">
+
+            <div class="sua-url">
+
+                <b>
+                    <div class="balao2" id="balao">
+                        Copiado
+                    </div>
+                    <b id="texto"><%= process.env.DOMAIN %><%= code %></b>
+
+                </b>
+                    <button onclick="copiarTexto()"><img src="/images/copy.svg" alt="copy" class="icon-btn"></button>
+            </div>
+            <a href="/"><button id="novo-link">Encurtar outro Link</button></a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</body>
+<footer>
+    <p>
+        &copy; 2023 ShortLinker Feito por <a href="https://gabrielleno.tech/" target="_blank">Gabriel Leno</a>
+    </p>
+</footer>
+<script>
+    const DarkLogo = document.getElementById('logo');
+    const WhiteLogo = document.getElementById('logo-icon-dark');
+    const checkbox = document.getElementById("btn");
+    let theme = window.localStorage.getItem("theme");
+    let isDarkLogoVisible = true;
+    let isWhiteLogoVisible = true;
+
+    if (!theme) {
+        theme = "light"; // Establecer tema predeterminado si no hay ningún valor en el localStorage
+        window.localStorage.setItem("theme", theme);
+    } else {
+        isDarkLogoVisible = window.localStorage.getItem("darkLogoVisible") === "true";
+        isWhiteLogoVisible = window.localStorage.getItem("whiteLogoVisible") === "true";
+    }
+
+    if (theme === "dark") {
+        document.body.classList.add("dark");
+        checkbox.checked = true; // Marcar el checkbox si el tema es "dark"
+        updateLogoVisibility();
+    } else {
+        updateLogoVisibility();
+    }
+
+    checkbox.addEventListener("change", () => {
+        document.body.classList.toggle("dark");
+
+        if (theme === "dark") {
+            theme = "light";
+            window.localStorage.setItem("theme", theme);
+            isDarkLogoVisible = true;
+            isWhiteLogoVisible = false;
+        } else {
+            theme = "dark";
+            window.localStorage.setItem("theme", theme);
+            isDarkLogoVisible = false;
+            isWhiteLogoVisible = true;
+        }
+
+        updateLogoVisibility();
+    });
+
+    const refresh = document.getElementById("refresh");
+    refresh.addEventListener("click", () => {
+        window.location.reload();
+    });
+
+    function updateLogoVisibility() {
+        DarkLogo.style.display = isDarkLogoVisible ? 'block' : 'none';
+        WhiteLogo.style.display = isWhiteLogoVisible ? 'block' : 'none';
+        window.localStorage.setItem("darkLogoVisible", isDarkLogoVisible.toString());
+        window.localStorage.setItem("whiteLogoVisible", isWhiteLogoVisible.toString());
+    }
+    document.getElementById('reload-link').addEventListener('click', function (e) {
+        e.preventDefault(); // Evita a ação padrão de navegar para outra página
+
+        location.reload(); // Recarrega a página atual
+    });
+    function copiarTexto() {
+        var elemento = document.getElementById("texto");
+        var areaDeTransferencia = document.createElement("textarea");
+        areaDeTransferencia.value = elemento.textContent;
+        document.body.appendChild(areaDeTransferencia);
+        areaDeTransferencia.select();
+        document.execCommand("copy");
+        document.body.removeChild(areaDeTransferencia);
+
+        /* Exibe uma mensagem para o usuário */
+        let balao = document.getElementById('balao');
+        balao.style.display = 'flex'
+    }
+</script>
+
+</html>
