@@ -3,7 +3,7 @@
   <p align="center">Shortlinker é um encurtador de links simples e eficiente. Ele transforma URLs longas e complexas em links curtos e fáceis de compartilhar. Economize tempo e torne a experiência de navegação mais fluida com o Shortlinker</p>
 </p>
 
-## Sobre o Projeto
+## Sobre o Projeto 🌌
 <p>ShortLinker foi um projeto em que tentei me aventurar no desenvolvimento do backend.<br>
 Ele possui um botão de dark mode que salva a escolha do usuário no localStorage.
 e está completamente responsivo.<br>
@@ -13,9 +13,10 @@ No entanto, deixei um vídeo como demonstração. Espero que gostem :)</p>
 
 ## Demonstração ⭐
 
+https://github.com/GxbrielLeno/shortlinker-node.js/assets/116293621/018edf0d-09c7-43b2-af44-1fd12aeaff56
+
 ## Tecnologias Utilizadas 🚀
   <img src="https://skills.thijs.gg/icons?i=nodejs,sqlite,html,css,javascript&theme=dark">
-
 
 ## Como Executar? ❤️
 
