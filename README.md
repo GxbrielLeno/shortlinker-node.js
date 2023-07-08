@@ -24,3 +24,4 @@ Clone o repositório <br>
 Faça um npm install no terminal <br>
 Após isso dê o comando npm start no terminal <br>
 Agora você poderá visualizar o projeto no link: https://localhost:3000 <br>
+Após isso deve criar um arquivo .env na raiz do projeto e colocar (DOMAIN=http://localhost:3000/)<br>
